@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { ShopContext } from '../context/ShopContext'
+import { ShopContext } from '../context/ShopContext.jsx'
 import { FaChevronDown } from 'react-icons/fa'
-import Item from '../components/items/Item'
+import Item from '../components/items/Item.jsx'
 
 const ShopCategory = (props) => {
   

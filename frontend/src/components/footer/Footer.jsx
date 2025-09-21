@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 const Footer = () => {
   return (
     <div className='flex flex-col justify-center items-center'>
-      <img className='h-[150px]' src="logo.jpg" alt="logo" />
+      <img className='h-[150px]' src="/logo.jpg" alt="logo" />
       <div>
         <ul className='flex flex-row justify-center gap-15 items-center text-xl font-semibold text-gray-500'>
           <li className='cursor-pointer'>About</li>

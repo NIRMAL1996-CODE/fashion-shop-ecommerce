@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Item = (props) => {
 
@@ -6,7 +7,7 @@ const Item = (props) => {
     <div>
     <div className='flex flex-col justify-center items-center w-[300px] border-2 border-gray-400 m-t-[10px] p-[10px] rounded-2xl  transition-transform duration-300 hover:scale-105 hover:shadow-lg'>
       <div>
-        <img className= 'h-[300px] flex justify-center items-center' src={props.image} alt="images" />
+        <Link to={`/product/${props.id}`}> <img className= 'h-[300px] flex justify-center items-center' src={props.image} alt="images" /></Link>
       </div>
      
      <div className='flex flex-row justify-between gap-5 items-center text-center '>
