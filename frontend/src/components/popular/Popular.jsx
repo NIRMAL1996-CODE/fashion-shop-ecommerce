@@ -6,8 +6,8 @@ import data_product from "../../data/data.js"; // adjust based on actual locatio
 const Popular = () => {
   return (
     <div  className='flex flex-col justify-center items-center border-t-2 border-gray-300 p-[10px] '>
-      <h1 className='text-6xl font-semibold font-serif text-red-400'>Popular in Women</h1>
-      <div className="flex flex-wrap justify-center gap-10 m-[10px]">
+      <h1 className='text-6xl font-semibold font-sans text-black mt-[30px]'>Popular in Women</h1>
+      <div className="flex flex-wrap justify-center gap-10 m-[10px] mt-[100px]">
         {data_product.map((item, i)=>{
          return (<Item key={i}
            id={item.id}
