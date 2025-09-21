@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '../components/home/home'
+import Home from '../components/home/Home'
 import Popular from '../components/popular/Popular'
 import Offer from '../components/offers/Offer'
 import NewCollections from '../components/newcollections/NewCollections'
