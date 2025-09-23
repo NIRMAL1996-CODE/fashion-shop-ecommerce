@@ -13,6 +13,7 @@ const App = () => {
     <div>
      <BrowserRouter>
      <Navbar/>
+     <div className='pt-20'>
      <Routes>
        <Route path='/' element={<Shop/>}/>
        <Route path='/men' element={<ShopCategory banner="/menbanner.jpg" category="men"/>}/>
@@ -23,6 +24,7 @@ const App = () => {
        <Route path='/cart' element={<Cart/>}/>
        <Route path='/login' element={<LoginSignup/>}/>
      </Routes>
+     </div>
      <Footer/>
      </BrowserRouter>
       
