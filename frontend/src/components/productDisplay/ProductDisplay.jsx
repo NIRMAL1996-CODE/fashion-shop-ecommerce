@@ -1,9 +1,12 @@
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa'
 import { ShopContext } from '../../context/ShopContext';
 
 const ProductDisplay = ({product}) =>{
+  useEffect(() => {
+    window.scrollTo(0, 0); // scroll to top on page load
+  }, []);
     const { addToCart } = useContext(ShopContext); 
   return (
     <div className='leftpart flex flex-row justify-between gap-10 items-center'>

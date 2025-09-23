@@ -1,64 +1,59 @@
-
 import { createContext, useState } from "react";
 import allProducts from "../data/allProducts.js";
 
-export const ShopContext  =createContext(null);
+export const ShopContext = createContext(null);
 
 const ShopProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState({});
+  const [cartItems, setCartItems] = useState([]); // array of {id, quantity}
 
   // --- ADD TO CART FUNCTION ---
   const addToCart = (itemId) => {
     setCartItems((prev) => {
-      const prevQty = prev[itemId] || 0; // get previous quantity or 0
-      return { ...prev, [itemId]: prevQty + 1 }; // add 1
+      const index = prev.findIndex((i) => i.id === itemId);
+      if (index >= 0) {
+        // item exists, increase quantity
+        const newCart = [...prev];
+        newCart[index].quantity += 1;
+        return newCart;
+      } else {
+        // item not in cart, add new
+        return [...prev, { id: itemId, quantity: 1 }];
+      }
     });
   };
 
   // --- REMOVE FROM CART FUNCTION ---
   const removeFromCart = (itemId) => {
-    setCartItems((prev) => {
-      const prevQty = prev[itemId] || 0;
-      if (prevQty <= 1) {
-        const newCart = { ...prev };
-        delete newCart[itemId]; // remove completely if 0
-        return newCart;
-      }
-      return { ...prev, [itemId]: prevQty - 1 }; // subtract 1
-    });
+    setCartItems((prev) => prev.filter((item) => item.id !== itemId));
   };
 
   // --- TOTAL ITEMS COUNT ---
   const getTotalCartItems = () => {
-    let total = 0;
-    for (const id in cartItems) {
-      total += cartItems[id];
-    }
-    return total;
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
   // --- TOTAL CART AMOUNT ---
   const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const id in cartItems) {
-      const product = allProducts.find((p) => p.id === Number(id));
-      if (product) totalAmount += product.new_price * cartItems[id];
-    }
-    return totalAmount;
+    return cartItems.reduce((total, item) => {
+      const product = allProducts.find((p) => p.id === item.id); // fix variable name
+      return total + (product ? product.new_price * item.quantity : 0);
+    }, 0);
   };
+
   return (
-    <ShopContext.Provider value={{ 
-      allProducts ,
-      cartItems,
-      addToCart, 
-      removeFromCart, 
-      getTotalCartItems,
-      getTotalCartAmount
-      }}>
+    <ShopContext.Provider
+      value={{
+        allProducts,
+        cartItems,
+        addToCart,
+        removeFromCart,
+        getTotalCartItems,
+        getTotalCartAmount,
+      }}
+    >
       {children}
     </ShopContext.Provider>
-  ) 
+  );
 };
 
 export default ShopProvider;
-
